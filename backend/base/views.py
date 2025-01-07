@@ -90,6 +90,13 @@ def logout(request):
   except:
     return Response({'success', False})
 
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def is_authenticated(request):
+  return Response({'authenticated':True})
+
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_notes(request):
