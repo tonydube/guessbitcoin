@@ -8,11 +8,12 @@ import {
 
 import { is_authenticated, login, register } from "../endpoints/api";
 import { useNavigate } from "react-router-dom";
+import { useAlert } from "./useAlerts";
 
 type AuthContextType = {
   isAuthenticated: boolean;
   loading: boolean;
-  login_user: (username: string, password: string) => Promise<void>;
+  login_user: (username: string, password: string) => Promise<boolean>;
   register_user: (
     username: string,
     email: string,
@@ -24,7 +25,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   loading: true,
-  login_user: async () => {},
+  login_user: async () => false,
   register_user: async () => {},
 });
 
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
 
   const get_authenticated = async () => {
     try {
@@ -49,7 +51,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (success) {
       setIsAuthenticated(true);
       navigate("/");
+      return true;
     }
+    return false;
   };
 
   const register_user = async (
@@ -58,10 +62,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     password: string,
     confirmPassword: string
   ) => {
-    if (password === confirmPassword) {
-      const success = await register(username, email, password);
-    } else {
-      alert("Passwords don't match!");
+    if (password !== confirmPassword) {
+      showAlert("Passwords don't match!", "error");
+      return;
+    }
+    try {
+      await register(username, email, password);
+      showAlert("Registration successful! You can now log in.", "success");
+      navigate("/login");
+    } catch {
+      showAlert("Registration failed. Please try again.", "error");
     }
   };
 

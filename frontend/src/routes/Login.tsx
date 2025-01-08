@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/useAuth";
+import { useAlert } from "../contexts/useAlerts";
 import { TextField, Button, Box, Typography } from "@mui/material";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { showAlert } = useAlert();
   const { login_user } = useAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    login_user(username, password);
+    const success = await login_user(username, password);
+    if (success) {
+      showAlert("Login successful!", "success");
+    } else {
+      showAlert("Login failed. Please check your credentials.", "error");
+    }
   };
 
   return (

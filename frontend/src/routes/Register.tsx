@@ -15,12 +15,6 @@ const Register = () => {
     e.preventDefault();
 
     register_user(username, email, password, confirmPassword);
-
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-    setError("");
   };
 
   return (
