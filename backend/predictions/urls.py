@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import SubmitPredictionView, CalendarPredictionsView
+from .views import submit_prediction, get_predictions
 
 urlpatterns = [
-  path('submit/', SubmitPredictionView.as_view(), name='submit_prediction'),
-  path('calendar/', CalendarPredictionsView.as_view(), name='calendar_predictions'),
+  path('', get_predictions),
+  path('submit/', submit_prediction),
 ]
