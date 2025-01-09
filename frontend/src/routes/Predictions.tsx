@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { prediction_submit } from "../endpoints/api";
 import { useAlert } from "../contexts/useAlerts";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, TextField } from "@mui/material";
 
 const Predictions = () => {
   const [guessDate, setGuessDate] = useState("");
@@ -13,6 +13,16 @@ const Predictions = () => {
     const message = await prediction_submit(guessDate, predictedPrice);
     const isSuccess = message === "Prediction submitted successfully!";
     showAlert(message, isSuccess ? "success" : "error");
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Regular expression to allow only up to two decimal places
+    const validValue = value.match(/^\d+(\.\d{0,2})?$/);
+
+    if (validValue) {
+      setPredictedPrice(value);
+    }
   };
 
   return (
@@ -32,17 +42,22 @@ const Predictions = () => {
       <Typography variant="h5" gutterBottom>
         Make a Prediction
       </Typography>
-      <input
+      <TextField
+        label="Prediction Date"
         type="date"
         value={guessDate}
         onChange={(e) => setGuessDate(e.target.value)}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        sx={{ marginBottom: 2 }}
       />
-      <input
+      <TextField
+        label="Predicted Price"
         type="number"
-        step="0.01"
-        placeholder="Predicted Price"
         value={predictedPrice}
-        onChange={(e) => setPredictedPrice(e.target.value)}
+        onChange={handlePriceChange}
+        sx={{ marginBottom: 2 }}
       />
       <Button
         type="submit"
