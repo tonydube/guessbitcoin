@@ -12,16 +12,21 @@ def submit_prediction(request):
   prediction_date = request.data.get('prediction_date')
   predicted_price = request.data.get('predicted_price')
 
+  # Validate input
+  if not prediction_date or not predicted_price:
+    return JsonResponse({'error': 'Prediction date and price are required.'}, status=400)
+
+  # Check for existing prediction
   if Prediction.objects.filter(user=user, prediction_date=prediction_date).exists():
     return JsonResponse({'error': 'You already made a prediction for this date.'}, status=400)
 
+  # Create prediction
   prediction = Prediction.objects.create(
     user=user,
     prediction_date=prediction_date,
     predicted_price=predicted_price
   )
   return JsonResponse({'message': 'Prediction submitted successfully!', 'id': prediction.id})
-
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

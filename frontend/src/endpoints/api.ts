@@ -92,15 +92,26 @@ export const prediction_submit = async (
   prediction_date: string,
   predicted_price: string
 ) => {
-  const response = await axios.post(
-    PREDICTION_SUBMIT_URL,
-    {
-      prediction_date: prediction_date,
-      predicted_price: predicted_price,
-    },
-    { withCredentials: true }
-  );
-  return response.data;
+  try {
+    const response = await axios.post(
+      PREDICTION_SUBMIT_URL,
+      {
+        prediction_date: prediction_date,
+        predicted_price: predicted_price,
+      },
+      { withCredentials: true }
+    );
+    return response.data.message;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        return error.response.data.error || "An error occurred on the server.";
+      } else if (error.request) {
+        return "No response from server. Please try again later.";
+      }
+    }
+    return "An error occurred. Please check your input and try again.";
+  }
 };
 
 export const get_predictions = async (): Promise<any> => {
