@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  Card,
+  CardContent,
+  Typography,
   Avatar,
   Button,
-  Typography,
-  Paper,
+  Box,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { get_predictions } from "../endpoints/api";
 
+interface Prediction {
+  date: string;
+  price: string;
+  user: string;
+}
+
 const PredictionsTable = () => {
-  const [predictions, setPredictions] = useState([]);
-  const [dates, setDates] = useState([]);
+  const [predictions, setPredictions] = useState<Prediction[]>([]);
+  const [dates, setDates] = useState<string[]>([]);
+  const theme = useTheme();
 
   useEffect(() => {
     const fetchPredictions = async () => {
       try {
-        const data = await get_predictions();
+        const data: Prediction[] = await get_predictions();
 
         // Generate dates starting from yesterday
         const today = new Date();
@@ -29,7 +33,7 @@ const PredictionsTable = () => {
 
         const rangeEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0); // Last day of the current month
 
-        const allDates = [];
+        const allDates: string[] = [];
         for (
           let date = new Date(yesterday);
           date <= rangeEnd;
@@ -48,98 +52,93 @@ const PredictionsTable = () => {
   }, []);
 
   // Group predictions by date
-  const groupedPredictions = predictions.reduce((acc, pred) => {
-    const date = new Date(pred.date).toLocaleDateString(); // Normalize date for grouping
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(pred);
-    return acc;
-  }, {});
+  const groupedPredictions = predictions.reduce<Record<string, Prediction[]>>(
+    (acc, pred) => {
+      const date = new Date(pred.date).toLocaleDateString(); // Normalize date for grouping
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(pred);
+      return acc;
+    },
+    {}
+  );
 
   return (
-    <TableContainer
-      component={Paper}
-      sx={{ width: "100%", margin: "auto", boxShadow: 2 }}
-    >
+    <Box sx={{ width: "100%", margin: "auto" }}>
       <Typography variant="h4" sx={{ margin: 2, textAlign: "center" }}>
         Predictions
       </Typography>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ width: "20%" }}>Date</TableCell>
-            <TableCell align="center">Range of Guesses</TableCell>
-            <TableCell align="center">Participants</TableCell>
-            <TableCell align="center">Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {dates.map((date) => {
-            const dayPredictions = groupedPredictions[date] || [];
-            const minPrice = dayPredictions.length
-              ? Math.min(
-                  ...dayPredictions.map((pred) => parseFloat(pred.price))
-                )
-              : null;
-            const maxPrice = dayPredictions.length
-              ? Math.max(
-                  ...dayPredictions.map((pred) => parseFloat(pred.price))
-                )
-              : null;
-            const uniqueUsers = [
-              ...new Set(dayPredictions.map((pred) => pred.user)),
-            ];
-            const dateObj = new Date(date);
-            const dayOfWeek = dateObj
-              .toLocaleDateString("en-US", { weekday: "short" })
-              .toUpperCase();
-            const dayNumber = dateObj.getDate();
+      {dates.map((date) => {
+        const dayPredictions = groupedPredictions[date] || [];
+        const minPrice = dayPredictions.length
+          ? Math.min(...dayPredictions.map((pred) => parseFloat(pred.price)))
+          : null;
+        const maxPrice = dayPredictions.length
+          ? Math.max(...dayPredictions.map((pred) => parseFloat(pred.price)))
+          : null;
+        const uniqueUsers = [
+          ...new Set(dayPredictions.map((pred) => pred.user)),
+        ];
+        const dateObj = new Date(date);
+        const dayOfWeek = dateObj.toLocaleDateString("en-US", {
+          weekday: "short",
+        });
+        const dayNumber = dateObj.getDate();
 
-            return (
-              <TableRow key={date}>
+        return (
+          <Card
+            key={date}
+            sx={{
+              marginBottom: 3,
+              borderRadius: 2,
+              border: `1px solid ${theme.palette.divider}`,
+              boxShadow: 0,
+            }}
+          >
+            <CardContent>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
                 {/* Date */}
-                <TableCell
-                  align="center"
-                  sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
-                >
-                  <Typography variant="h6" component="div">
-                    {dayOfWeek}
-                  </Typography>
-                  <Typography variant="h4" component="div">
-                    {dayNumber}
-                  </Typography>
-                </TableCell>
+                <Box>
+                  <Typography variant="body1">{dayOfWeek}</Typography>
+                  <Typography variant="h4">{dayNumber}</Typography>
+                </Box>
 
                 {/* Range of guesses */}
-                <TableCell align="center" sx={{ fontSize: "1rem" }}>
+                <Typography variant="h6" sx={{ textAlign: "right" }}>
                   {minPrice !== null && maxPrice !== null
                     ? `$${minPrice.toLocaleString()} - $${maxPrice.toLocaleString()}`
                     : "No guesses yet"}
-                </TableCell>
-
-                {/* User avatars */}
-                <TableCell align="center">
-                  {uniqueUsers.length > 0
-                    ? uniqueUsers.map((user, index) => (
-                        <Avatar
-                          key={index}
-                          sx={{
-                            display: "inline-block",
-                            marginRight: 0.5,
-                            width: 40,
-                            height: 40,
-                            fontSize: "1rem",
-                          }}
-                        >
-                          {user[0].toUpperCase()}
-                        </Avatar>
-                      ))
-                    : "No participants"}
-                </TableCell>
+                </Typography>
+                <Box>
+                  {uniqueUsers.length > 0 ? (
+                    uniqueUsers.map((user, index) => (
+                      <Avatar
+                        key={index}
+                        sx={{
+                          display: "inline-flex",
+                          marginRight: 1,
+                          width: 40,
+                          height: 40,
+                          fontSize: "2rem",
+                        }}
+                      >
+                        {user[0].toUpperCase()}
+                      </Avatar>
+                    ))
+                  ) : (
+                    <Typography>No participants</Typography>
+                  )}
+                </Box>
 
                 {/* Actions */}
-                <TableCell align="center">
+                <Box>
                   <Button
                     variant="contained"
                     color="primary"
@@ -159,13 +158,13 @@ const PredictionsTable = () => {
                       Edit
                     </Button>
                   )}
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </Box>
   );
 };
 
