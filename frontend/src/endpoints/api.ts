@@ -7,6 +7,8 @@ const REGISTER_URL = `${BASE_URL}register/`;
 const REFRESH_URL = `${BASE_URL}token/refresh/`;
 const AUTH_URL = `${BASE_URL}authenticated/`;
 const NOTES_URL = `${BASE_URL}notes/`;
+const PREDICTION_SUBMIT_URL = `${BASE_URL}predictions/submit/`;
+const GET_PREDICTIONS_URL = `${BASE_URL}predictions/`;
 
 export const login = async (username: string, password: string) => {
   const response = await axios.post(
@@ -84,4 +86,31 @@ export const register = async (
     { withCredentials: true }
   );
   return response.data;
+};
+
+export const prediction_submit = async (
+  prediction_date: string,
+  predicted_price: string
+) => {
+  const response = await axios.post(
+    PREDICTION_SUBMIT_URL,
+    {
+      prediction_date: prediction_date,
+      predicted_price: predicted_price,
+    },
+    { withCredentials: true }
+  );
+  return response.data;
+};
+
+export const get_predictions = async (): Promise<any> => {
+  try {
+    const response = await axios.get(GET_PREDICTIONS_URL, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
