@@ -46,9 +46,6 @@ const Leaderboard: React.FC = () => {
 
   return (
     <Box sx={{ height: 400, width: "100%" }}>
-      <Typography variant="h4" gutterBottom>
-        Leaderboard
-      </Typography>
       <DataGrid
         rows={leaderboardData}
         columns={columns}

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Settings = () => {
   return (
@@ -6,11 +6,7 @@ const Settings = () => {
       sx={{
         maxWidth: 600,
       }}
-    >
-      <Typography variant="h4" gutterBottom>
-        Settings
-      </Typography>
-    </Box>
+    ></Box>
   );
 };
 

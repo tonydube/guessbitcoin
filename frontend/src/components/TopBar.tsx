@@ -12,10 +12,16 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShareIcon from "@mui/icons-material/Share";
 import { useTheme } from "@mui/material/styles";
 import { useAuth } from "../contexts/useAuth";
+import { useLocation } from "react-router-dom";
 
 const TopBar: React.FC = () => {
   const theme = useTheme();
   const { user, isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  const pageName =
+    location.pathname.split("/").filter(Boolean).pop()?.replace(/-/g, " ") ||
+    "Home";
 
   return (
     <AppBar
@@ -29,7 +35,7 @@ const TopBar: React.FC = () => {
     >
       <Toolbar sx={{ justifyContent: "space-between", paddingX: 2 }}>
         <Typography variant="h5" component="div" sx={{ fontWeight: "light" }}>
-          Home
+          {pageName.charAt(0).toUpperCase() + pageName.slice(1)}
         </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

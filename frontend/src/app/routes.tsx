@@ -9,7 +9,7 @@ import MainLayout from "../components/MainLayout";
 
 import Home from "../routes/Home";
 import Predictions from "../routes/Predictions";
-import Calendar from "../routes/Calendar";
+import Prediction from "../routes/Prediction";
 import Leaderboard from "../routes/Leaderboard";
 import Settings from "../routes/Settings";
 import Help from "../routes/Help";
@@ -32,7 +32,7 @@ const routes = () => (
     >
       <Route index element={<Home />} />
       <Route path="predictions" element={<Predictions />} />
-      <Route path="calendar" element={<Calendar />} />
+      <Route path="prediction" element={<Prediction />} />
       <Route path="leaderboard" element={<Leaderboard />} />
       <Route path="settings" element={<Settings />} />
       <Route path="help" element={<Help />} />

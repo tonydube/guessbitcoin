@@ -98,7 +98,7 @@ const Sidebar = () => {
         </ListItem>
         <ListItem
           component={RouterLink}
-          to="/calendar"
+          to="/predictions"
           sx={{
             "&:hover": {
               backgroundColor: "#fff",
@@ -125,7 +125,7 @@ const Sidebar = () => {
         </ListItem>
         <ListItem
           component={RouterLink}
-          to="/predictions"
+          to="/prediction"
           sx={{
             "&:hover": {
               backgroundColor: "#fff",
