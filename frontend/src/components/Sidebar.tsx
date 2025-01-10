@@ -6,11 +6,12 @@ import {
   ListItemIcon,
   ListSubheader,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpIcon from "@mui/icons-material/Help";
@@ -18,14 +19,16 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import logo from "../assets/gb.svg";
 
 const Sidebar = () => {
+  const theme = useTheme();
   return (
     <Box
       component="nav"
       sx={{
-        width: 200,
+        width: 175,
         borderRight: "1px solid #ddd",
         height: "100vh",
         overflowY: "auto",
+        backgroundColor: theme.palette.divider,
       }}
     >
       {/* Logo Section */}
@@ -49,84 +52,217 @@ const Sidebar = () => {
             paddingRight: 8,
           }}
         />
-        <Typography variant="body1">guessbitcoin</Typography>
+        <Typography variant="body1" sx={{ fontWeight: "light" }}>
+          guessbitcoin
+        </Typography>
       </Box>
 
       {/* Main Menu Section */}
-      <List subheader={<ListSubheader>Main Menu</ListSubheader>}>
+      <List
+        subheader={
+          <ListSubheader sx={{ backgroundColor: "unset" }}>
+            Main Menu
+          </ListSubheader>
+        }
+      >
         <ListItem
           component={RouterLink}
           to="/"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: "40px" }}>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem
-          component={RouterLink}
-          to="/predictions"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
-        >
-          <ListItemIcon>
-            <TrendingUpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Predictions" />
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Home
+              </Typography>
+            }
+          />
         </ListItem>
         <ListItem
           component={RouterLink}
           to="/calendar"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: "40px" }}>
             <CalendarTodayIcon />
           </ListItemIcon>
-          <ListItemText primary="Calendar" />
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Predictions
+              </Typography>
+            }
+          />
+        </ListItem>
+        <ListItem
+          component={RouterLink}
+          to="/predictions"
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: "40px" }}>
+            <PsychologyAltIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Create New
+              </Typography>
+            }
+          />
         </ListItem>
         <ListItem
           component={RouterLink}
           to="/leaderboard"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: "40px" }}>
             <LeaderboardIcon />
           </ListItemIcon>
-          <ListItemText primary="Leaderboard" />
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Leaderboard
+              </Typography>
+            }
+          />
         </ListItem>
       </List>
 
       {/* Others Section */}
-      <List subheader={<ListSubheader>Others</ListSubheader>}>
+      <List
+        subheader={
+          <ListSubheader sx={{ backgroundColor: "unset" }}>
+            Others
+          </ListSubheader>
+        }
+      >
         <ListItem
           component={RouterLink}
           to="/settings"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: "40px" }}>
             <SettingsIcon />
           </ListItemIcon>
-          <ListItemText primary="Settings" />
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Settings
+              </Typography>
+            }
+          />
         </ListItem>
         <ListItem
           component={RouterLink}
           to="/help"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: "40px" }}>
             <HelpIcon />
           </ListItemIcon>
-          <ListItemText primary="Help" />
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Help
+              </Typography>
+            }
+          />
         </ListItem>
         <ListItem
           component={RouterLink}
           to="/logout"
-          sx={{ "&:hover": { backgroundColor: "#f5f5f5" } }}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#f5f5f5",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
         >
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: "40px" }}>
             <LogoutIcon />
           </ListItemIcon>
-          <ListItemText primary="Logout" />
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                Logout
+              </Typography>
+            }
+          />
         </ListItem>
       </List>
     </Box>

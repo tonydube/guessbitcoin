@@ -9,7 +9,7 @@ const MainLayout = () => {
       <Box
         component="nav"
         sx={{
-          width: 200,
+          width: 175,
           flexShrink: 0,
         }}
       >
