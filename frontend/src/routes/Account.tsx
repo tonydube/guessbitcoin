@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   TextField,
@@ -16,7 +16,7 @@ const Account = () => {
   const [username, setUsername] = useState(user?.username || "");
   const [email, setEmail] = useState(user?.email || "");
   const [points, setPoints] = useState(user?.points || 0);
-  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || "");
+  const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSave = () => {

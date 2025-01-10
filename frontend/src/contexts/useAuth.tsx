@@ -13,7 +13,12 @@ import { useAlert } from "./useAlerts";
 type AuthContextType = {
   isAuthenticated: boolean;
   loading: boolean;
-  user: { username: string; email: string } | null;
+  user: {
+    username: string;
+    email: string;
+    points: string;
+    avatar_url: string;
+  } | null;
   login_user: (username: string, password: string) => Promise<boolean>;
   register_user: (
     username: string,
@@ -34,9 +39,12 @@ const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<{ username: string; email: string } | null>(
-    null
-  );
+  const [user, setUser] = useState<{
+    username: string;
+    email: string;
+    points: string;
+    avatar_url: string;
+  } | null>(null);
   const navigate = useNavigate();
   const { showAlert } = useAlert();
 

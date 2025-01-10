@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from profiles.models import UserProfile
 from .models import Note
 from .serializer import NoteSerializer, UserRegistrationSerializer
 
@@ -95,11 +96,14 @@ def logout(request):
 @permission_classes([IsAuthenticated])
 def is_authenticated(request):
   user = request.user
+  user_profile = UserProfile.objects.get(user=user)
+
   return Response({
     'authenticated': True,
     'user': {
       'username': user.username,
       'email': user.email,
+      'avatar_url': user_profile.avatar_url
     }
   })
 

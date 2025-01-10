@@ -53,7 +53,9 @@ const TopBar: React.FC = () => {
 
           {/* Avatar and User Info */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Avatar>{user ? user.username[0] : "U"}</Avatar>
+            <Avatar src={user?.avatar_url}>
+              {user ? user.username[0] : "U"}
+            </Avatar>
             <Box sx={{ textAlign: "left" }}>
               {isAuthenticated ? (
                 <>
