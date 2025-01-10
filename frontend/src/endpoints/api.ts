@@ -31,10 +31,10 @@ export const logout = async () => {
 
 export const is_authenticated = async () => {
   try {
-    await axios.post(AUTH_URL, {}, { withCredentials: true });
-    return true;
+    const response = await axios.post(AUTH_URL, {}, { withCredentials: true });
+    return response.data;
   } catch (error) {
-    return false;
+    return { authenticated: false, user: null };
   }
 };
 

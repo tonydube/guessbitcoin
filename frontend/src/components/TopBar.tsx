@@ -11,9 +11,12 @@ import {
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShareIcon from "@mui/icons-material/Share";
 import { useTheme } from "@mui/material/styles";
+import { useAuth } from "../contexts/useAuth";
 
 const TopBar: React.FC = () => {
   const theme = useTheme();
+  const { user, isAuthenticated } = useAuth();
+
   return (
     <AppBar
       position="static"
@@ -44,14 +47,20 @@ const TopBar: React.FC = () => {
 
           {/* Avatar and User Info */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Avatar>U</Avatar>
+            <Avatar>{user ? user.username[0] : "U"}</Avatar>
             <Box sx={{ textAlign: "left" }}>
-              <Typography variant="body1" fontWeight="bold">
-                Username
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                username@gmail.com
-              </Typography>
+              {isAuthenticated ? (
+                <>
+                  <Typography variant="body1" fontWeight="bold">
+                    {user?.username}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {user?.email}
+                  </Typography>
+                </>
+              ) : (
+                <Typography variant="body1">Not logged in</Typography>
+              )}
             </Box>
           </Box>
         </Box>

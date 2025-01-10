@@ -13,6 +13,7 @@ import { useAlert } from "./useAlerts";
 type AuthContextType = {
   isAuthenticated: boolean;
   loading: boolean;
+  user: { username: string; email: string } | null;
   login_user: (username: string, password: string) => Promise<boolean>;
   register_user: (
     username: string,
@@ -25,6 +26,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   loading: true,
+  user: null,
   login_user: async () => false,
   register_user: async () => {},
 });
@@ -32,15 +34,25 @@ const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<{ username: string; email: string } | null>(
+    null
+  );
   const navigate = useNavigate();
   const { showAlert } = useAlert();
 
   const get_authenticated = async () => {
     try {
-      const success = await is_authenticated();
-      setIsAuthenticated(success);
+      const response = await is_authenticated();
+      if (response.authenticated) {
+        setIsAuthenticated(true);
+        setUser(response.user);
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
     } catch {
       setIsAuthenticated(false);
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -81,7 +93,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, loading, login_user, register_user }}
+      value={{ isAuthenticated, loading, user, login_user, register_user }}
     >
       {children}
     </AuthContext.Provider>

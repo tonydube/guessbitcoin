@@ -94,7 +94,14 @@ def logout(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def is_authenticated(request):
-  return Response({'authenticated':True})
+  user = request.user
+  return Response({
+    'authenticated': True,
+    'user': {
+      'username': user.username,
+      'email': user.email,
+    }
+  })
 
 
 @api_view(['POST'])
