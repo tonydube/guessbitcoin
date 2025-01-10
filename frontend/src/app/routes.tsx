@@ -13,6 +13,7 @@ import Prediction from "../routes/Prediction";
 import Leaderboard from "../routes/Leaderboard";
 import Settings from "../routes/Settings";
 import Help from "../routes/Help";
+import Account from "../routes/Account";
 
 const routes = () => (
   <Routes>
@@ -34,6 +35,7 @@ const routes = () => (
       <Route path="predictions" element={<Predictions />} />
       <Route path="prediction" element={<Prediction />} />
       <Route path="leaderboard" element={<Leaderboard />} />
+      <Route path="account" element={<Account />} />
       <Route path="settings" element={<Settings />} />
       <Route path="help" element={<Help />} />
     </Route>

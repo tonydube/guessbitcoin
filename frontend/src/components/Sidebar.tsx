@@ -14,6 +14,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpIcon from "@mui/icons-material/Help";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -187,6 +188,33 @@ const Sidebar = () => {
           </ListSubheader>
         }
       >
+        <ListItem
+          component={RouterLink}
+          to="/account"
+          sx={{
+            "&:hover": {
+              backgroundColor: "#fff",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: "40px" }}>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                My Account
+              </Typography>
+            }
+          />
+        </ListItem>
         <ListItem
           component={RouterLink}
           to="/settings"

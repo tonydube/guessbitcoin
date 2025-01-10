@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { get_leaderboard } from "../endpoints/api";
 
 interface LeaderboardEntry {
