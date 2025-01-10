@@ -29,7 +29,9 @@ const Sidebar = () => {
         borderRight: `1px solid ${theme.palette.divider}`,
         height: "100vh",
         overflowY: "auto",
-        backgroundColor: lighten(theme.palette.divider, 0.8),
+        backgroundColor: lighten(theme.palette.divider, 0.9),
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       {/* Logo Section */}
@@ -65,6 +67,7 @@ const Sidebar = () => {
             MAIN MENU
           </ListSubheader>
         }
+        sx={{ flexGrow: 1 }}
       >
         <ListItem
           component={RouterLink}
