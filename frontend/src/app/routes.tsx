@@ -2,13 +2,17 @@ import { Routes, Route } from "react-router-dom";
 
 import Login from "../routes/Login";
 import Logout from "../routes/Logout";
-import Menu from "../routes/Menu";
-import PrivateRoute from "../components/PrivateRoute";
 import Register from "../routes/Register";
-import Predictions from "../routes/Predictions";
-import Leaderboard from "../routes/Leaderboard";
-import PredictionsCalendar from "../routes/Calendar";
+
+import PrivateRoute from "../components/PrivateRoute";
 import MainLayout from "../components/MainLayout";
+
+import Menu from "../routes/Menu";
+import Predictions from "../routes/Predictions";
+import Calendar from "../routes/Calendar";
+import Leaderboard from "../routes/Leaderboard";
+import Settings from "../routes/Settings";
+import Help from "../routes/Help";
 
 const routes = () => (
   <Routes>
@@ -28,8 +32,10 @@ const routes = () => (
     >
       <Route index element={<Menu />} />
       <Route path="predictions" element={<Predictions />} />
-      <Route path="calendar" element={<PredictionsCalendar />} />
+      <Route path="calendar" element={<Calendar />} />
       <Route path="leaderboard" element={<Leaderboard />} />
+      <Route path="settings" element={<Settings />} />
+      <Route path="help" element={<Help />} />
     </Route>
   </Routes>
 );

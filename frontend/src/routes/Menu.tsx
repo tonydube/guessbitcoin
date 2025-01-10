@@ -21,7 +21,6 @@ const Menu = () => {
     <Box
       sx={{
         maxWidth: 600,
-        margin: "auto",
         padding: 3,
         borderRadius: 2,
       }}
