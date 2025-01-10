@@ -7,7 +7,7 @@ import Register from "../routes/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import MainLayout from "../components/MainLayout";
 
-import Menu from "../routes/Menu";
+import Home from "../routes/Home";
 import Predictions from "../routes/Predictions";
 import Calendar from "../routes/Calendar";
 import Leaderboard from "../routes/Leaderboard";
@@ -30,7 +30,7 @@ const routes = () => (
         </PrivateRoute>
       }
     >
-      <Route index element={<Menu />} />
+      <Route index element={<Home />} />
       <Route path="predictions" element={<Predictions />} />
       <Route path="calendar" element={<Calendar />} />
       <Route path="leaderboard" element={<Leaderboard />} />
