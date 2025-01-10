@@ -8,6 +8,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { lighten } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -25,10 +26,10 @@ const Sidebar = () => {
       component="nav"
       sx={{
         width: 175,
-        borderRight: "1px solid #ddd",
+        borderRight: `1px solid ${theme.palette.divider}`,
         height: "100vh",
         overflowY: "auto",
-        backgroundColor: theme.palette.divider,
+        backgroundColor: lighten(theme.palette.divider, 0.8),
       }}
     >
       {/* Logo Section */}
@@ -38,7 +39,7 @@ const Sidebar = () => {
           alignItems: "center",
           justifyContent: "center",
           height: 32,
-          borderBottom: "1px solid #ddd",
+          borderBottom: `1px solid ${theme.palette.divider}`,
           padding: 2,
         }}
       >
@@ -60,8 +61,8 @@ const Sidebar = () => {
       {/* Main Menu Section */}
       <List
         subheader={
-          <ListSubheader sx={{ backgroundColor: "unset" }}>
-            Main Menu
+          <ListSubheader sx={{ backgroundColor: "unset", fontSize: "0.75rem" }}>
+            MAIN MENU
           </ListSubheader>
         }
       >
@@ -70,7 +71,7 @@ const Sidebar = () => {
           to="/"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
@@ -97,7 +98,7 @@ const Sidebar = () => {
           to="/calendar"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
@@ -124,7 +125,7 @@ const Sidebar = () => {
           to="/predictions"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
@@ -151,7 +152,7 @@ const Sidebar = () => {
           to="/leaderboard"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
@@ -178,8 +179,8 @@ const Sidebar = () => {
       {/* Others Section */}
       <List
         subheader={
-          <ListSubheader sx={{ backgroundColor: "unset" }}>
-            Others
+          <ListSubheader sx={{ backgroundColor: "unset", fontSize: "0.75rem" }}>
+            OTHER
           </ListSubheader>
         }
       >
@@ -188,7 +189,7 @@ const Sidebar = () => {
           to="/settings"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
@@ -215,7 +216,7 @@ const Sidebar = () => {
           to="/help"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
@@ -242,7 +243,7 @@ const Sidebar = () => {
           to="/logout"
           sx={{
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#fff",
             },
             textDecoration: "none",
             color: "inherit",
