@@ -21,7 +21,7 @@ const TopBar: React.FC = () => {
 
   const pageName =
     location.pathname.split("/").filter(Boolean).pop()?.replace(/-/g, " ") ||
-    "Home";
+    "Dashboard";
 
   return (
     <AppBar

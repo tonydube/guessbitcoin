@@ -7,7 +7,7 @@ import Register from "../routes/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import MainLayout from "../components/MainLayout";
 
-import Home from "../routes/Home";
+import Dashboard from "../routes/Dashboard";
 import Predictions from "../routes/Predictions";
 import Prediction from "../routes/Prediction";
 import Leaderboard from "../routes/Leaderboard";
@@ -31,7 +31,7 @@ const routes = () => (
         </PrivateRoute>
       }
     >
-      <Route index element={<Home />} />
+      <Route index element={<Dashboard />} />
       <Route path="predictions" element={<Predictions />} />
       <Route path="prediction" element={<Prediction />} />
       <Route path="leaderboard" element={<Leaderboard />} />

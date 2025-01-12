@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useAuth } from "../contexts/useAuth";
 
-const Home = () => {
+const Dashboard = () => {
   const { user } = useAuth();
   return (
     <Box
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;

@@ -92,7 +92,7 @@ const Sidebar = () => {
               <Typography
                 sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
               >
-                Home
+                Dashboard
               </Typography>
             }
           />
