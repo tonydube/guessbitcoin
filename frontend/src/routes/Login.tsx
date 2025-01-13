@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/useAuth";
 import { useAlert } from "../contexts/useAlerts";
-import {
-  TextField,
-  Button,
-  Box,
-  Typography,
-  Link,
-  Divider,
-} from "@mui/material";
+import { TextField, Button, Box, Typography, Link } from "@mui/material";
 import predictionIllustration from "../assets/prediction.svg";
 
 const Login = () => {
