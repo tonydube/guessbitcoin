@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/useAuth";
 import { useAlert } from "../contexts/useAlerts";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Link,
+  Divider,
+} from "@mui/material";
+import predictionIllustration from "../assets/prediction.svg";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,49 +29,114 @@ const Login = () => {
 
   return (
     <Box
-      component="form"
-      onSubmit={handleLogin}
       sx={{
         display: "flex",
-        flexDirection: "column",
-        maxWidth: 400,
-        margin: "auto",
-        padding: 2,
-        boxShadow: 3,
-        borderRadius: 2,
+        minHeight: "100vh",
+        backgroundColor: "#f6f8f7",
       }}
     >
-      <Typography variant="h5" gutterBottom>
-        Login
-      </Typography>
-
-      <TextField
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        variant="outlined"
-        fullWidth
-        margin="normal"
-      />
-
-      <TextField
-        label="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        type="password"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-      />
-
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        sx={{ marginTop: 2 }}
+      {/* Left section */}
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#eaf4ec",
+        }}
       >
-        Login
-      </Button>
+        <Box textAlign="center" sx={{ maxWidth: 400, px: 2 }}>
+          <img
+            src={predictionIllustration}
+            alt="Illustration"
+            style={{ width: "100%", marginBottom: "1rem" }}
+          />
+          <Typography variant="h4" gutterBottom>
+            Predict Bitcoin's Future
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            Guess Bitcoin's closing price, compete with others, and earn points
+            for accurate predictions!
+          </Typography>
+        </Box>
+      </Box>
+
+      {/* Right section */}
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 4,
+          backgroundColor: "white",
+        }}
+      >
+        <Box
+          component="form"
+          onSubmit={handleLogin}
+          sx={{
+            width: "100%",
+            maxWidth: 360,
+          }}
+        >
+          <Typography variant="h5" gutterBottom>
+            Sign in to GuessBitcoin
+          </Typography>
+
+          <TextField
+            label="Username or email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+
+          <TextField
+            label="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{ marginBottom: 2 }}
+          >
+            <Typography variant="caption">Forgot password?</Typography>
+          </Box>
+
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            color="primary"
+            sx={{
+              marginBottom: 2,
+              backgroundColor: "#2c846d",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#1a5a49",
+              },
+            }}
+          >
+            Sign in
+          </Button>
+
+          <Typography align="center">
+            Are you new?{" "}
+            <Link href="/register" underline="hover">
+              Create an Account
+            </Link>
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   );
 };
