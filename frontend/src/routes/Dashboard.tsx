@@ -3,6 +3,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DataGrid } from "@mui/x-data-grid";
+import LastSevenDays from "../components/dashboard/LastSevenDays";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -167,6 +168,24 @@ const Dashboard = () => {
                 disableRowSelectionOnClick
                 hideFooter
               />
+            </Box>
+          </Paper>
+        </Grid2>
+        <Grid2 size={{ xs: 12, sm: 12, md: 8 }} sx={{ display: "flex" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: 2,
+              width: "100%",
+              border: `1px solid ${theme.palette.divider}`,
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <LastSevenDays />
             </Box>
           </Paper>
         </Grid2>

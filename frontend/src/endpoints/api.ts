@@ -10,6 +10,7 @@ const NOTES_URL = `${BASE_URL}notes/`;
 const PREDICTION_SUBMIT_URL = `${BASE_URL}predictions/submit/`;
 const GET_PREDICTIONS_URL = `${BASE_URL}predictions/`;
 const GET_LEADERBOARD_URL = `${BASE_URL}predictions/leaderboard/`;
+const GET_LAST_SEVEN_DAYS_PREDICTIONS_URL = `${BASE_URL}dashboard/predictions/last-seven-days/`;
 
 export const login = async (username: string, password: string) => {
   const response = await axios.post(
@@ -130,6 +131,18 @@ export const get_predictions = async (): Promise<any> => {
 export const get_leaderboard = async (): Promise<any> => {
   try {
     const response = await axios.get(GET_LEADERBOARD_URL, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const get_last_seven_days_predictions = async (): Promise<any> => {
+  try {
+    const response = await axios.get(GET_LAST_SEVEN_DAYS_PREDICTIONS_URL, {
       withCredentials: true,
     });
     return response.data;
