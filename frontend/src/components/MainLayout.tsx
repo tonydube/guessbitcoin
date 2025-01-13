@@ -5,7 +5,7 @@ import TopBar from "./TopBar";
 
 const MainLayout = () => {
   return (
-    <Box display="flex" minHeight="100vh" overflow="hidden">
+    <Box display="flex" maxHeight="100vh" overflow="hidden">
       <Box
         component="nav"
         sx={{

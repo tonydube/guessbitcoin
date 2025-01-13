@@ -14,13 +14,12 @@ const Help = () => {
         p: 1,
       }}
     >
-      <Typography variant="h4" gutterBottom>
-        Help & FAQs
-      </Typography>
       <Typography variant="body1" paragraph>
         Welcome to the Help section! Here, you'll find answers to common
-        questions and tips for getting started with the platform. If you need
-        further assistance, feel free to contact support.
+        questions and tips for getting started with the platform.
+      </Typography>
+      <Typography variant="body1" paragraph>
+        If you need further assistance, feel free to contact support.
       </Typography>
 
       <Accordion>

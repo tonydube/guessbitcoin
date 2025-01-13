@@ -45,12 +45,13 @@ const Leaderboard: React.FC = () => {
   }, []);
 
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <DataGrid
         rows={leaderboardData}
         columns={columns}
         loading={loading}
-        pageSizeOptions={[5, 10, 25, 100]}
+        disableRowSelectionOnClick
+        hideFooter
       />
     </Box>
   );
