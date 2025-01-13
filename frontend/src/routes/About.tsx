@@ -13,7 +13,7 @@ import {
 const rewardTiers = [
   {
     tier: "Exact Match 🎯",
-    criteria: "Matches the closing price to the cent",
+    criteria: "Matches the closing price to the cent! 🤯",
     reward: "10,000 points",
   },
   {
