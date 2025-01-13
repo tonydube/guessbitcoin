@@ -11,6 +11,7 @@ import {
 import { lighten } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
@@ -93,6 +94,33 @@ const Sidebar = () => {
                 sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
               >
                 Dashboard
+              </Typography>
+            }
+          />
+        </ListItem>
+        <ListItem
+          component={RouterLink}
+          to="/about"
+          sx={{
+            "&:hover": {
+              backgroundColor: "#fff",
+            },
+            textDecoration: "none",
+            color: "inherit",
+            "&:visited": {
+              color: "inherit",
+            },
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: "40px" }}>
+            <InfoIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <Typography
+                sx={{ fontWeight: 300, "&:hover": { fontWeight: 500 } }}
+              >
+                About
               </Typography>
             }
           />

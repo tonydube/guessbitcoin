@@ -14,6 +14,7 @@ import Leaderboard from "../routes/Leaderboard";
 import Settings from "../routes/Settings";
 import Help from "../routes/Help";
 import Account from "../routes/Account";
+import About from "../routes/About";
 
 const routes = () => (
   <Routes>
@@ -32,6 +33,7 @@ const routes = () => (
       }
     >
       <Route index element={<Dashboard />} />
+      <Route path="about" element={<About />} />
       <Route path="predictions" element={<Predictions />} />
       <Route path="prediction" element={<Prediction />} />
       <Route path="leaderboard" element={<Leaderboard />} />
