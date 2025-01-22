@@ -62,6 +62,24 @@ const Dashboard = () => {
       }}
     >
       <Grid2 container spacing={3}>
+        <Grid2 size={{ xs: 12, sm: 12, md: 8 }} sx={{ display: "flex" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: 2,
+              width: "100%",
+              border: `1px solid ${theme.palette.divider}`,
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <LastSevenDays />
+            </Box>
+          </Paper>
+        </Grid2>
         <Grid2 size={{ xs: 12, sm: 9, md: 4 }} sx={{ display: "flex" }}>
           <Paper
             elevation={0}
@@ -81,6 +99,42 @@ const Dashboard = () => {
                 }}
               />
             </LocalizationProvider>
+          </Paper>
+        </Grid2>
+        <Grid2 size={{ xs: 12, sm: 12, md: 8 }} sx={{ display: "flex" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              borderRadius: 2,
+              width: "100%",
+              border: `1px solid ${theme.palette.divider}`,
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              {/* Title */}
+              <Typography variant="h6" gutterBottom sx={{ px: 1, pt: 1 }}>
+                Recent Guesses
+              </Typography>
+              {/* DataGrid */}
+              <DataGrid
+                rows={recentGuessRows}
+                columns={columns}
+                initialState={{
+                  columns: {
+                    columnVisibilityModel: {
+                      id: false,
+                    },
+                  },
+                }}
+                autoHeight
+                disableRowSelectionOnClick
+                hideFooter
+              />
+            </Box>
           </Paper>
         </Grid2>
         <Grid2 size={4}>
@@ -134,60 +188,6 @@ const Dashboard = () => {
               </Button>
             </Paper>
           </Box>
-        </Grid2>
-        <Grid2 size={{ xs: 12, sm: 12, md: 8 }} sx={{ display: "flex" }}>
-          <Paper
-            elevation={0}
-            sx={{
-              borderRadius: 2,
-              width: "100%",
-              border: `1px solid ${theme.palette.divider}`,
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-              }}
-            >
-              {/* Title */}
-              <Typography variant="h6" gutterBottom sx={{ px: 1, pt: 1 }}>
-                Recent Guesses
-              </Typography>
-              {/* DataGrid */}
-              <DataGrid
-                rows={recentGuessRows}
-                columns={columns}
-                initialState={{
-                  columns: {
-                    columnVisibilityModel: {
-                      id: false,
-                    },
-                  },
-                }}
-                autoHeight
-                disableRowSelectionOnClick
-                hideFooter
-              />
-            </Box>
-          </Paper>
-        </Grid2>
-        <Grid2 size={{ xs: 12, sm: 12, md: 8 }} sx={{ display: "flex" }}>
-          <Paper
-            elevation={0}
-            sx={{
-              borderRadius: 2,
-              width: "100%",
-              border: `1px solid ${theme.palette.divider}`,
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-              }}
-            >
-              <LastSevenDays />
-            </Box>
-          </Paper>
         </Grid2>
         <Grid2 size={4}>
           <Box
