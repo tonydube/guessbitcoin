@@ -1,6 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000/api/";
+const apiUrl = "/choreo-apis/guessbitcoin/backend/v1";
+
+const BASE_URL = import.meta.env.VITE_API_URL
+  ? import.meta.env.VITE_API_URL
+  : apiUrl;
 const LOGIN_URL = `${BASE_URL}token/`;
 const LOGOUT_URL = `${BASE_URL}logout/`;
 const REGISTER_URL = `${BASE_URL}register/`;
