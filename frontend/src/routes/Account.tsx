@@ -28,6 +28,8 @@ const Account = () => {
   const handleAvatarChange = () => {
     // Handle avatar change logic, like opening a file picker or uploading an image
     console.log("Change Avatar");
+    setPoints(0);
+    setAvatarUrl("");
   };
 
   if (!isAuthenticated) {
