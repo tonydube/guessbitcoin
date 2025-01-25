@@ -26,43 +26,19 @@ const Login = () => {
         display: "flex",
         minHeight: "100vh",
         backgroundColor: "#f6f8f7",
+        flexDirection: { xs: "column", md: "row" }, // Stack vertically on mobile, horizontally on desktop
       }}
     >
-      {/* Left section */}
+      {/* Right section (Sign in form) */}
       <Box
         sx={{
           flex: 1,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#eaf4ec",
-        }}
-      >
-        <Box textAlign="center" sx={{ maxWidth: 400, px: 2 }}>
-          <img
-            src={predictionIllustration}
-            alt="Illustration"
-            style={{ width: "100%", marginBottom: "1rem" }}
-          />
-          <Typography variant="h4" gutterBottom>
-            Predict Bitcoin's Future
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Guess Bitcoin's closing price, compete with others, and earn points
-            for accurate predictions!
-          </Typography>
-        </Box>
-      </Box>
-
-      {/* Right section */}
-      <Box
-        sx={{
-          flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 4,
+          padding: { xs: 3, md: 4 },
           backgroundColor: "white",
+          order: { xs: 1, md: 0 }, // Place form at the top on mobile
         }}
       >
         <Box
@@ -71,6 +47,7 @@ const Login = () => {
           sx={{
             width: "100%",
             maxWidth: 360,
+            px: 2,
           }}
         >
           <Typography variant="h5" gutterBottom>
@@ -128,6 +105,38 @@ const Login = () => {
               Create an Account
             </Link>
           </Typography>
+        </Box>
+      </Box>
+
+      {/* Left section (Illustration) */}
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#eaf4ec",
+          padding: { xs: 3, md: 0 },
+          textAlign: "center",
+          order: { xs: 2, md: 1 }, // Place illustration below the form on mobile
+        }}
+      >
+        <Box sx={{ maxWidth: 400, px: 2 }}>
+          <img
+            src={predictionIllustration}
+            alt="Illustration"
+            style={{ width: "100%", marginBottom: "1rem" }}
+          />
+          {/* Hide text below the image on mobile */}
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Typography variant="h4" gutterBottom>
+              Predict Bitcoin's Future
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Guess Bitcoin's closing price, compete with others, and earn
+              points for accurate predictions!
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>
