@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-x*=3-n6%+n)6o#=e#x35))0-9a$70gs%4w-egp_#zq3biqkp9*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backend-464688842.dp-development-guessbitcoin-56550-2731592509']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
